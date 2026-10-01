@@ -1,0 +1,741 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>N1C Resource Hub | ESHG 2026</title>
+
+  <style>
+    :root {
+      --navy: #07132E;
+      --coral: #E6333C;
+      --coral-dark: #C52630;
+      --cream: #F6F5F2;
+      --white: #FFFFFF;
+      --grey: #6F7682;
+      --light-grey: #E7E9ED;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* ---------------- HEADER ---------------- */
+
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 65px 24px 55px;
+      text-align: center;
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--coral);
+      font-size: 0.85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    header h1 {
+      margin: 0 auto;
+      max-width: 850px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    header p {
+      max-width: 720px;
+      margin: 22px auto 0;
+      font-size: 1.1rem;
+      color: #E6E9EF;
+    }
+
+    .accent-line {
+      width: 70px;
+      height: 5px;
+      background: var(--coral);
+      margin: 28px auto 0;
+      border-radius: 10px;
+    }
+
+    /* ---------------- INTRO ---------------- */
+
+    .intro {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 45px 24px 20px;
+      text-align: center;
+    }
+
+    .intro h2 {
+      font-size: 1.7rem;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      color: var(--grey);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* ---------------- CATEGORY NAV ---------------- */
+
+    .category-nav {
+      max-width: 900px;
+      margin: 25px auto 45px;
+      padding: 0 24px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .category-nav a {
+      text-decoration: none;
+      color: var(--navy);
+      background: white;
+      border: 1px solid var(--light-grey);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .category-nav a:hover {
+      color: white;
+      background: var(--coral);
+      border-color: var(--coral);
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px 65px;
+    }
+
+    .section-heading {
+      margin-bottom: 25px;
+    }
+
+    .section-label {
+      color: var(--coral);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.8rem;
+    }
+
+    .section-heading h2 {
+      font-size: 2rem;
+      margin: 4px 0 5px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--grey);
+      max-width: 680px;
+    }
+
+    /* ---------------- CARDS ---------------- */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 28px;
+      border-top: 5px solid var(--navy);
+      box-shadow: 0 5px 18px rgba(7, 19, 46, 0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(7, 19, 46, 0.13);
+    }
+
+    .card.highlight {
+      border-top-color: var(--coral);
+    }
+
+    .card-type {
+      color: var(--coral);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.72rem;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+      line-height: 1.25;
+    }
+
+    .card p {
+      color: #4E5562;
+      font-size: 0.95rem;
+      margin: 0 0 22px;
+      flex-grow: 1;
+    }
+
+    .button {
+      display: inline-block;
+      align-self: flex-start;
+      text-decoration: none;
+      color: white;
+      background: var(--coral);
+      padding: 10px 17px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    .button:hover {
+      background: var(--coral-dark);
+    }
+
+    /* ---------------- COMMUNITY ---------------- */
+
+    .community-section {
+      background: var(--navy);
+      color: white;
+      padding: 65px 24px;
+    }
+
+    .community-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .community-section .section-label {
+      color: var(--coral);
+    }
+
+    .community-section h2 {
+      font-size: 2rem;
+      margin: 4px 0 8px;
+    }
+
+    .community-intro {
+      color: #DDE1E8;
+      max-width: 680px;
+      margin-bottom: 28px;
+    }
+
+    .community-section .card {
+      color: var(--navy);
+    }
+
+    /* ---------------- FOOTER ---------------- */
+
+    footer {
+      background: white;
+      text-align: center;
+      padding: 35px 20px;
+      color: var(--grey);
+      font-size: 0.85rem;
+    }
+
+    footer strong {
+      color: var(--navy);
+    }
+
+    /* ---------------- MOBILE ---------------- */
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 45px 20px 40px;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .category-nav {
+        padding: 0 15px;
+      }
+
+      .category-nav a {
+        font-size: 0.9rem;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="header-inner">
+
+      <div class="eyebrow">N=1 Collaborative Resource Hub</div>
+
+      <h1>
+        Assessing Genetic Variants for Therapeutic Actionability
+      </h1>
+
+      <p>
+        Explore guidelines, frameworks, tools and community resources
+        supporting the development of individualized genetic therapies.
+      </p>
+
+      <div class="accent-line"></div>
+
+    </div>
+  </header>
+
+
+  <!-- INTRO -->
+
+  <section class="intro">
+
+    <h2>Explore the resources</h2>
+
+    <p>
+      Resources presented by Marlen Lauffer at ESHG 2026,
+      bringing together approaches for therapeutic actionability assessment,
+      variant prioritisation and individualized therapy development.
+    </p>
+
+  </section>
+
+
+  <!-- QUICK NAVIGATION -->
+
+  <nav class="category-nav">
+
+    <a href="#guidelines">
+      Guidelines &amp; Frameworks
+    </a>
+
+    <a href="#tools">
+      Tools
+    </a>
+
+    <a href="#community">
+      Community
+    </a>
+
+  </nav>
+
+
+  <!-- ===================================================== -->
+  <!-- GUIDELINES & FRAMEWORKS -->
+  <!-- ===================================================== -->
+
+  <section class="section" id="guidelines">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        01 — Assess
+      </div>
+
+      <h2>Guidelines &amp; Frameworks</h2>
+
+      <p>
+        Structured approaches for assessing variants, genes and diseases
+        for their potential suitability for individualized genetic therapies.
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+      <!-- ASO GUIDELINES -->
+
+      <article class="card highlight">
+
+        <div class="card-type">
+          Variant assessment
+        </div>
+
+        <h3>N1C ASO Guidelines</h3>
+
+        <p>
+          Consensus guidelines for systematically assessing pathogenic
+          variants for potential antisense oligonucleotide (ASO)
+          therapeutic approaches.
+        </p>
+
+        <a
+          class="button"
+          href="https://doi.org/10.1016/j.ajhg.2025.02.017"
+          target="_blank"
+          rel="noopener noreferrer">
+          View ASO Guidelines ↗
+        </a>
+
+      </article>
+
+
+      <!-- GENE & DISEASE FRAMEWORK -->
+
+      <article class="card">
+
+        <div class="card-type">
+          Gene &amp; disease assessment
+        </div>
+
+        <h3>N1C Gene &amp; Disease Framework</h3>
+
+        <p>
+          A framework for assessing genes and diseases for their
+          suitability for genetic therapy development.
+        </p>
+
+        <a
+          class="button"
+          href="https://zenodo.org/records/20669131"
+          target="_blank"
+          rel="noopener noreferrer">
+          View Framework ↗
+        </a>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================== -->
+  <!-- TOOLS -->
+  <!-- ===================================================== -->
+
+  <section class="section" id="tools">
+
+    <div class="section-heading">
+
+      <div class="section-label">
+        02 — Explore &amp; Apply
+      </div>
+
+      <h2>Tools</h2>
+
+      <p>
+        Digital resources supporting variant assessment,
+        target identification and individualized therapy development.
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+      <!-- GENE REGISTRY -->
+
+      <article class="card highlight">
+
+        <div class="card-type">
+          Registry
+        </div>
+
+        <h3>N1C Gene Registry</h3>
+
+        <p>
+          Explore individualized therapy programs, marketed genetic
+          therapies and pathogenic variants assessed for genetic
+          therapeutic approaches.
+        </p>
+
+        <a
+          class="button"
+          href="https://generegistry.n1collaborative.org/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open Gene Registry ↗
+        </a>
+
+      </article>
+
+
+      <!-- AVEC -->
+
+      <article class="card">
+
+        <div class="card-type">
+          Variant assessment
+        </div>
+
+        <h3>AVEC</h3>
+
+        <p>
+          A web application that semi-automates variant assessment
+          using the N1C v2.0 ASO guidelines.
+        </p>
+
+        <a
+          class="button"
+          href="https://avec.uni-koeln.de/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open AVEC ↗
+        </a>
+
+      </article>
+
+
+      <!-- GTGT -->
+
+      <article class="card">
+
+        <div class="card-type">
+          Exon skipping
+        </div>
+
+        <h3>Genetic Therapy Generator Toolkit</h3>
+
+        <p>
+          Generate possible exon-skipping approaches for a transcript
+          and predict their effects on the resulting protein.
+        </p>
+
+        <a
+          class="button"
+          href="https://gtgt.rnatherapy.nl/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open GTGT ↗
+        </a>
+
+      </article>
+
+
+      <!-- EXONVIZ -->
+
+      <article class="card">
+
+        <div class="card-type">
+          Transcript visualisation
+        </div>
+
+        <h3>ExonViz</h3>
+
+        <p>
+          Visualise transcripts and pathogenic variants to identify
+          mutational hotspots and exons that may be suitable for
+          exon-skipping approaches.
+        </p>
+
+        <a
+          class="button"
+          href="https://exonviz.rnatherapy.nl/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open ExonViz ↗
+        </a>
+
+      </article>
+
+
+      <!-- TREXOMEDB -->
+
+      <article class="card">
+
+        <div class="card-type">
+          Target discovery
+        </div>
+
+        <h3>TReXomeDB</h3>
+
+        <p>
+          Explore exons containing tandem-repeat protein domains
+          to identify potential exon-skipping targets that may be
+          missed by conventional approaches.
+        </p>
+
+        <a
+          class="button"
+          href="https://trexomedb.rnatherapy.nl/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open TReXomeDB ↗
+        </a>
+
+      </article>
+
+
+      <!-- OLIGOAI -->
+
+      <article class="card">
+
+        <div class="card-type">
+          ASO design
+        </div>
+
+        <h3>OligoAI</h3>
+
+        <p>
+          AI-based tool supporting the design of gapmer
+          antisense oligonucleotides.
+        </p>
+
+        <a
+          class="button"
+          href="https://sitlabs.org/oligoai"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open OligoAI ↗
+        </a>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ===================================================== -->
+  <!-- COMMUNITY -->
+  <!-- ===================================================== -->
+
+  <section class="community-section" id="community">
+
+    <div class="community-inner">
+
+      <div class="section-label">
+        03 — Connect
+      </div>
+
+      <h2>Community</h2>
+
+      <p class="community-intro">
+        Connect with the international community working to advance
+        individualized medicines for patients with rare diseases.
+      </p>
+
+
+      <div class="cards">
+
+
+        <!-- CONNECTIONS -->
+
+        <article class="card highlight">
+
+          <div class="card-type">
+            Community platform
+          </div>
+
+          <h3>N1C Connections</h3>
+
+          <p>
+            N1C's platform for community, collaboration and shared
+            resources, bringing together scientists, clinicians,
+            families, industry and other stakeholders.
+          </p>
+
+          <a
+            class="button"
+            href="https://connections.n1collaborative.org/"
+            target="_blank"
+            rel="noopener noreferrer">
+            Open Connections ↗
+          </a>
+
+        </article>
+
+
+        <!-- N1C -->
+
+        <article class="card">
+
+          <div class="card-type">
+            Learn more
+          </div>
+
+          <h3>N=1 Collaborative</h3>
+
+          <p>
+            Learn more about the global collaborative working to make
+            individualized medicines safe and rapidly accessible to
+            patients worldwide.
+          </p>
+
+          <a
+            class="button"
+            href="https://www.n1collaborative.org/"
+            target="_blank"
+            rel="noopener noreferrer">
+            Visit N1C ↗
+          </a>
+
+        </article>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <strong>ESHG 2026 · Marlen Lauffer</strong>
+
+    <br>
+
+    Interventional Precision Genomics Lab ·
+    Dutch Center for RNA Therapeutics ·
+    N=1 Collaborative
+
+  </footer>
+
+
+</body>
+</html>
+```
